@@ -612,7 +612,6 @@ static int cdc_ncm_bind(struct usbnet *dev, struct usb_interface *intf)
 
 	/* NCM data altsetting is always 1 */
 	return cdc_ncm_bind_common(dev, intf, 1);
-
 }
 
 static void cdc_ncm_align_tail(struct sk_buff *skb, size_t modulus, size_t remainder, size_t max)
@@ -1159,11 +1158,7 @@ static void cdc_ncm_disconnect(struct usb_interface *intf)
 static const struct driver_info cdc_ncm_info = {
 	.description = "CDC NCM",
 	.flags = FLAG_POINTTOPOINT | FLAG_NO_SETINT | FLAG_MULTI_PACKET
-<<<<<<< HEAD
-                        | FLAG_LINK_INTR,
-=======
 			| FLAG_LINK_INTR,
->>>>>>> v3.10.103
 	.bind = cdc_ncm_bind,
 	.unbind = cdc_ncm_unbind,
 	.check_connect = cdc_ncm_check_connect,

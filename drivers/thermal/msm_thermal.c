@@ -43,6 +43,12 @@
 #include <linux/debugfs.h>
 #include <linux/pm_opp.h>
 #include <linux/sched/rt.h>
+
+#ifdef CONFIG_STATE_HELPER
+#include <linux/state_helper.h>
+#endif
+
+
 #include <linux/notifier.h>
 #include <linux/reboot.h>
 #include <linux/suspend.h>
@@ -129,7 +135,12 @@
 #define HW_VER_BIT_MASK 0x1
 #define HW_VER_VALUE 0x1
 
-static struct msm_thermal_data msm_thermal_info;
+#define POLLING_DELAY 100
+
+unsigned int temp_threshold = 60;
+module_param(temp_threshold, int, 0755);
+
+struct msm_thermal_data msm_thermal_info;
 static struct delayed_work check_temp_work, retry_hotplug_work;
 static bool core_control_enabled;
 static uint32_t cpus_offlined;

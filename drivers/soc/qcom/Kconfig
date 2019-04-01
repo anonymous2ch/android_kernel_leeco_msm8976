@@ -672,6 +672,21 @@ config MSM_PERFORMANCE_HOTPLUG_ON
 	  capability of msm_performance driver. Setting this flag to false will
           compile out the nodes needed for core-control functionality through
           msm_performance.
+          
+config STATE_NOTIFIER
+        bool "State Notifier"
+
+config STATE_HELPER
+        bool "State Helper"
+	depends on STATE_NOTIFIER
+
+config MSM_LIMITER
+	bool "MSM Frequency Limiter Driver"
+	default y
+	help
+	  The MSM Frequency Limiter Driver controls max frequency limit for each CPU
+	  to desired value on suspend/resume
+
 
 config QCOM_NPA_DUMP
 	bool "Read NPA dump from the RPM memory"
